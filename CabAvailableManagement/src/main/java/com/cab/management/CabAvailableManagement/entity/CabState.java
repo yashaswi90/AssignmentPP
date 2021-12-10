@@ -10,6 +10,7 @@ import javax.persistence.*;
 
 @Entity
 @Builder
+@Data
 public class CabState {
 
     @Id
@@ -21,6 +22,7 @@ public class CabState {
     @Column(name = "id", updatable = false, nullable = false)
     private String id;
 
+    @Column(unique = true)
     private String cab_number;
 
     private State state;

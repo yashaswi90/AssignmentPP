@@ -25,9 +25,8 @@ public class CabAvailableService {
        cabAvailableRepository.save(cabState);
     }
 
-//    public void deleteNonIdleCab(CabState cabState){
-//
-//        cabAvailableRepository.deleteById(cabState.());
-//    }
+    public void deleteNonIdleCab(CabState cabState){
+        cabAvailableRepository.deleteByCabNumber(cabState.getCab_number());
+    }
 
 }

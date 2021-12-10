@@ -14,4 +14,7 @@ public interface CabAvailableRepository extends JpaRepository<CabState, String> 
 
 
     List<CabState> findAllByLocation(Location location);
+
+    void deleteByCabNumber(String cab_number);
+
 }
