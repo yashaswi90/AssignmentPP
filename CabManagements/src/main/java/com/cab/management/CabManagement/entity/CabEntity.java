@@ -22,7 +22,10 @@ public class CabEntity {
     private String id;
 
     private String cabNumber;
-    private String cityId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", referencedColumnName = "location_id")
+    private Location location;
 
 
 }

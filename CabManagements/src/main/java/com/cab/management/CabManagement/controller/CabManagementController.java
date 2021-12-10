@@ -2,6 +2,7 @@ package com.cab.management.CabManagement.controller;
 
 import com.cab.management.CabManagement.domain.Cab;
 import com.cab.management.CabManagement.entity.CabEntity;
+import com.cab.management.CabManagement.entity.Location;
 import com.cab.management.CabManagement.services.CabRegistrationPublisher;
 import com.cab.management.CabManagement.services.RegisterCabService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,6 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
 
 @RestController
 @EnableBinding(CabRegistrationPublisher.class)
@@ -26,7 +25,12 @@ public class CabManagementController {
     public String registerCab(@RequestBody Cab cab) {
         CabEntity cabEntity = CabEntity.builder()
                 .cabNumber(cab.getCab_number())
-                .cityId(cab.getCity_id()).build();
+                .location(Location.builder().city(cab.getLocs().getCity())
+                        .latitude(cab.getLocs().getLatitude())
+                        .longitude(cab.getLocs().getLongitude())
+                        .build())
+                .build();
+
         registerCabService.onboardCab(cabEntity);
         cabRegistrationPublisher.cabRegistration().send(MessageBuilder.withPayload(cab).build());
         return "Onboarding Cab registered successfully";

@@ -14,20 +14,16 @@ public class CabAvailableService {
     @Autowired
     private CabAvailableRepository cabAvailableRepository;
 
-    public List<CabState> getAvaialbleCabByLocation(Location location){
+    public List<CabState> getAvaialbleCabByLocation(Location location) {
 
         List<CabState> cabs = cabAvailableRepository.findAllByLocation(location);
         return cabs;
     }
 
-    public void saveIdleCab(CabState cabState){
-
-       cabAvailableRepository.save(cabState);
+    public void saveIdleCab(CabState cabState) {
+        cabAvailableRepository.save(cabState);
     }
 
-    public void deleteByCabNumber(String cabNumber) {
-        cabAvailableRepository.deleteByCabNumber(cabNumber);
-    }
 
     public void removeCab(String id) {
         cabAvailableRepository.deleteById(id);
@@ -37,9 +33,4 @@ public class CabAvailableService {
         CabState cabState = cabAvailableRepository.findByCabNumber(cab_number);
         return cabState;
     }
-//    public void deleteNonIdleCab(CabState cabState){
-//
-//        cabAvailableRepository.deleteById(cabState.());
-//    }
-
 }

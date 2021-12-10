@@ -1,5 +1,6 @@
-package com.cab.management.CabStateManagement.entity;
+package com.cab.management.CabStateManagement.dto;
 
+import com.cab.management.CabStateManagement.entity.Location;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
@@ -15,6 +16,6 @@ import javax.persistence.Id;
 public class Cab {
     private String id;
     private String cab_number;
-    private String city_id;
+    private Locs locs;
 
 }

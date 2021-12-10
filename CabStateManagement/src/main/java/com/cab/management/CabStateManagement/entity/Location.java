@@ -1,13 +1,18 @@
-package com.cab.management.CabStateManagement.entity;/*
 package com.cab.management.CabStateManagement.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
+@NoArgsConstructor
 @Entity
 @Builder
+@Data
+@AllArgsConstructor
 public class Location {
 
     @Id
@@ -19,6 +24,7 @@ public class Location {
     @Column(name = "location_id", updatable = false, nullable = false)
     private String id;
 
+    private String city;
     private Long latitude;
     private Long longitude;
 
@@ -26,4 +32,4 @@ public class Location {
     private CabState cabState;
 
 }
-*/
+
