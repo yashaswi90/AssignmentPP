@@ -1,6 +1,7 @@
 package com.cab.management.CabStateManagement.entity;
 
 import com.cab.management.CabStateManagement.enums.State;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,9 @@ import javax.persistence.Id;
 
 @Entity
 @Builder
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 //@NoArgsConstructor
 public class CabState {
 

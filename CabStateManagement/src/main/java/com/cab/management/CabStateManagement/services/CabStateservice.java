@@ -18,12 +18,17 @@ public class CabStateservice {
         cabStateRepository.save(cabState);
     }
 
-    public void removeCab(CabState cabState) {
-        cabStateRepository.delete(cabState);
+    public void removeCab(String id) {
+        cabStateRepository.deleteById(id);
     }
 
 
     public void updateLocationCab(CabState cabState) {
         cabStateRepository.save(cabState);
+    }
+
+    public CabState fetchCab(String cab_number) {
+        CabState cabState = cabStateRepository.findByCabNumber(cab_number);
+        return cabState;
     }
 }

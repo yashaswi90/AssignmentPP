@@ -30,9 +30,8 @@ public class CabStateManagementListener {
     @StreamListener(target = CabBinding.DEREGISTER)
     public void deRegisterCabListener(@Payload Cab cab) {
         if (Objects.nonNull(cab)) {
-            CabState cabState = CabState.builder().cabId(cab.getCab_number())
-                    .state(State.IDLE).build();
-            cabStateservice.removeCab(cabState);
+            CabState cabState = cabStateservice.fetchCab(cab.getCab_number());
+            cabStateservice.removeCab(cabState.getId());
         }
     }
 
