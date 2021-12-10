@@ -1,6 +1,7 @@
 package com.cab.management.CabManagement.controller;
 
 import com.cab.management.CabManagement.domain.Cab;
+import com.cab.management.CabManagement.domain.Locs;
 import com.cab.management.CabManagement.entity.CabEntity;
 import com.cab.management.CabManagement.entity.Location;
 import com.cab.management.CabManagement.services.CabRegistrationPublisher;
@@ -39,8 +40,14 @@ public class CabManagementController {
 
     @DeleteMapping("/deleteCab/{cabNumber}")
     public String deRegisterCab(@PathVariable String cabNumber) {
-        Cab cab = registerCabService.findByCabNumber(cabNumber);
-        registerCabService.deRegisterCab(cabNumber);
+        CabEntity cabEntity = registerCabService.findByCabNumber(cabNumber);
+        Cab cab = Cab.builder().cab_number(cabEntity.getCabNumber())
+                .locs(Locs.builder()
+                        .city(cabEntity.getLocation()
+                                .getCity()).latitude(cabEntity.getLocation().getLatitude())
+                        .longitude(cabEntity.getLocation().getLatitude()).id(cabEntity.getLocation().getId()).build())
+                .id(cabEntity.getId()).build();
+        registerCabService.deRegisterCab(cabEntity.getId());
         cabRegistrationPublisher.cabDeRegistration().send(MessageBuilder.withPayload(cab).build());
         return "Cab de-registered successfully";
 
@@ -48,7 +55,13 @@ public class CabManagementController {
 
     @GetMapping("/cab/{cabNumber}")
     public ResponseEntity<Cab> getByCabNumber(@PathVariable String cabNumber) {
-        Cab cab = registerCabService.findByCabNumber(cabNumber);
+        CabEntity cabEntity = registerCabService.findByCabNumber(cabNumber);
+        Cab cab = Cab.builder().cab_number(cabEntity.getCabNumber())
+                .locs(Locs.builder()
+                        .city(cabEntity.getLocation()
+                                .getCity()).latitude(cabEntity.getLocation().getLatitude())
+                        .longitude(cabEntity.getLocation().getLatitude()).id(cabEntity.getLocation().getId()).build())
+                .id(cabEntity.getId()).build();
         return ResponseEntity.ok(cab);
     }
 

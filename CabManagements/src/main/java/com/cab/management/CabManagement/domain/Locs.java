@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Data
 public class Locs {
 
+    private String id;
     private String city;
     private Long latitude;
     private Long longitude;
