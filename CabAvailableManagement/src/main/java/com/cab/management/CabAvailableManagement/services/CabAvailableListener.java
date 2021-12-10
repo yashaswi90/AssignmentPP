@@ -28,13 +28,15 @@ public class CabAvailableListener {
     }
 
 
-  /*  @StreamListener(target = CabAvailableBinding.ON_TRIP_CAB)
+    @StreamListener(target = CabAvailableBinding.ON_TRIP_CAB)
     public void removeNonIdleCab(@Payload Cab cab) {
-        if (Objects.nonNull(cab)) {
-            CabState cabState = CabState.builder().cab_number(cab.getCab_number())
-                    .state(State.IDLE).build();
-            cabStateservice.deleteNonIdleCab(cabState);
+        if (Objects.nonNull(cab.getCab_number())) {
+        /*    CabState cabState = CabState.builder().cab_number(cab.getCab_number())
+                    .state(State.IDLE).build();*/
+
+            CabState cabState = cabStateservice.fetchCab(cab.getCab_number());
+            cabStateservice.removeCab(cabState.getId());
         }
-    }*/
+    }
 
 }

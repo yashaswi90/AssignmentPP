@@ -25,6 +25,18 @@ public class CabAvailableService {
        cabAvailableRepository.save(cabState);
     }
 
+    public void deleteByCabNumber(String cabNumber) {
+        cabAvailableRepository.deleteByCabNumber(cabNumber);
+    }
+
+    public void removeCab(String id) {
+        cabAvailableRepository.deleteById(id);
+    }
+
+    public CabState fetchCab(String cab_number) {
+        CabState cabState = cabAvailableRepository.findByCabNumber(cab_number);
+        return cabState;
+    }
 //    public void deleteNonIdleCab(CabState cabState){
 //
 //        cabAvailableRepository.deleteById(cabState.());

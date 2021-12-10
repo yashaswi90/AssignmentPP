@@ -15,7 +15,7 @@ public class Cab {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private String id;
 
     private String cab_number;
     private String city_id;
